@@ -47,11 +47,11 @@ h1, h2, h3, h4, h5, h6 {
 """
 
 image_paths = [
-    "https://github.com/quekwl/car_damage_assessment/blob/kishen/chermaine_predict/minordamage.jpg",
-    "https://github.com/quekwl/car_damage_assessment/blob/kishen/chermaine_predict/severedamage.JPG",
-    "https://github.com/quekwl/car_damage_assessment/blob/kishen/chermaine_predict/chermaine_predict/moderatedamage.JPG",
-    "https://github.com/quekwl/car_damage_assessment/blob/kishen/chermaine_predict/chermaine_predict/totalloss.jpg",
-    "https://github.com/quekwl/car_damage_assessment/blob/kishen/chermaine_predict/chermaine_predict/nodamage.jpg",
+    "chermaine_predict/minordamage.jpg",
+    "chermaine_predict/severedamage.JPG",
+    "chermaine_predict/moderatedamage.JPG",
+    "chermaine_predict/totalloss.jpg",
+    "chermaine_predict/nodamage.jpg",
 ]
 captions = [
     "Total Loss",
@@ -60,6 +60,8 @@ captions = [
     "Minor Damage",
     "No Damage"
 ]
+
+
 if len(captions) != len(image_paths):
     st.error("Number of captions must match the number of images.")
 else:
