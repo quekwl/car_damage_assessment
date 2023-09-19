@@ -47,12 +47,13 @@ h1, h2, h3, h4, h5, h6 {
 """
 
 image_paths = [
-    "chermaine_predict/minordamage.jpg",
+    "chermaine_predict/totalloss.jpg",
     "chermaine_predict/severedamage.JPG",
     "chermaine_predict/moderatedamage.JPG",
-    "chermaine_predict/totalloss.jpg",
+    "chermaine_predict/minordamage.jpg",
     "chermaine_predict/nodamage.jpg",
 ]
+
 captions = [
     "Total Loss",
     "Severe Damage",
