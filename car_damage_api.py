@@ -4,28 +4,13 @@ import streamlit as st
 from PIL import Image
 import streamlit as st
 
-# Define custom CSS to set the background image
-# custom_css ="""
-# <style>
-# [data-testid="stAppViewContainer"] {
-#     background-image: url("");
-#     background-size: cover;
-# }
-# /* Add the custom CSS to expand the width */
-# body {
-#     width: 500%;  /* Adjust the width as needed */
-#     margin: 50 auto; /* Center the content */
-# }
-# </style>
-# """
-
 api_endpoint = "https://car-damage-35ftdc3l5a-ew.a.run.app/predict"
 
 st.set_page_config(
     page_title="Car Damage Assessment Analyzer 🚗💥",
     page_icon=":car:",
-    layout="wide",  # Use a wide layout
-    initial_sidebar_state="expanded",  # Expand the sidebar by default
+    layout="wide",
+    initial_sidebar_state="expanded",
 )
 
 
@@ -62,37 +47,31 @@ captions = [
     "No Damage"
 ]
 
-
 if len(captions) != len(image_paths):
     st.error("Number of captions must match the number of images.")
 else:
-    # Define the size for all images
     image_size = (400, 400)
-    # Create a grid for displaying images side by side with captions
     image_row = st.columns(len(image_paths))
     for i in range(len(image_paths)):
         image_path = image_paths[i]
         caption = captions[i]
-        # Load and resize the image
+
         img = Image.open(image_path)
-        img = img.resize(image_size)
-        # Display the resized image with the specified caption
+        img = img.resize(image_size) #Resizing
+
         with image_row[i]:
             st.image(img, caption=caption, use_column_width=True)
 
 
 # Display the uploaded image
 if image is not None:
-    st.image(image, caption="Uploaded Image.", width=400)
+    st.image(image, caption="Uploaded Image", width=500)
 
     # Button to trigger the prediction
     if st.button("Predict"):
-        # Prepare the image for prediction
         img = Image.open(image)
-        img = img.resize((224, 224))  # Adjust the size based on your model's requirements
-
-        # Convert image to bytes
-        img_bytes = io.BytesIO()
+        img = img.resize((224, 224))
+        img_bytes = io.BytesIO() # Convert image to bytes
         img.save(img_bytes, format='JPEG')
         img_bytes = img_bytes.getvalue()
 
@@ -113,5 +92,23 @@ if image is not None:
 
             # st.success(f"Prediction: {prediction}")
             st.write(f'<div style="font-size: 40px;">Prediction: {prediction_label}</div>', unsafe_allow_html=True)
+
+            if prediction == "no_damage":
+                slider = st.slider('Price Range Indicator (in SG$)', value=0, min_value=0, max_value=50000)
+                st.write(f'<div style="font-size: 25px;">Your car looks good 👍: No Repair Needed </div>', unsafe_allow_html=True)
+            elif prediction == "minor_damage":
+                slider = st.slider('Price Range Indicator (in SG$)', value=10000, min_value=0, max_value=50000)
+                st.write(f'<div style="font-size: 25px;">Your car seems to have a minor scratch/dent 🫢: Estimate Repair cost = Less than 10k</div>', unsafe_allow_html=True)
+            elif prediction == "moderate_damage":
+                slider = st.slider('Price Range Indicator (in SG$)', value=20000, min_value=0, max_value=50000)
+                st.write(f'<div style="font-size: 25px;">Your car seems to be moderately damaged 😔: Estimate Repair cost = From 10k to 20k</div>', unsafe_allow_html=True)
+            elif prediction == "severe_damage":
+                slider = st.slider('Price Range Indicator (in SG$)', value=30000, min_value=0, max_value=50000)
+                st.write(f'<div style="font-size: 25px;">Your car seems to be severly damaged 😣: Estimate Repair cost = From 20k to 30k</div>', unsafe_allow_html=True)
+            elif prediction == "total_loss":
+                slider = st.slider('Price Range Indicator (in SG$)', value=50000, min_value=0, max_value=50000)
+                st.write(f'<div style="font-size: 25px;">Your car seems to be a total loss 😖: Estimate Repair cost = More than 30k</div>', unsafe_allow_html=True)
+                st.write(f'<div style="font-size: 23px;">The cost to repair your car might be more expensive than getting a new vehicle!</div>', unsafe_allow_html=True)
+
         else:
-            st.error("Failed to get prediction from the API.")
+            st.error("Failed to get prediction from the API 🚨.")
