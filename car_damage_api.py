@@ -69,8 +69,8 @@ else:
         img = img.resize(image_size) #Resizing
 
         with image_row[i]:
-            st.image(img, caption=caption, use_column_width=True)
-            st.write(f"<p style='font-size: 11px;'>{description}</p>", unsafe_allow_html=True)
+            st.image(img, caption=description, use_column_width=True)
+            # st.write(f"<p style='font-size: 11px;'>{description}</p>", unsafe_allow_html=True)
 
 # Display the uploaded image
 if image is not None:
