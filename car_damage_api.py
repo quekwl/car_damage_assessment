@@ -49,9 +49,9 @@ captions = [
 
 descriptions = {
     "Total Loss": "The car is completely crushed.",
-    "Severe Damage": "Front & Side/ Back & Side damaged.",
-    "Moderate Damage": "Front or Back of car is damaged",
-    "Minor Damage": "Car has minor dents/scratches.",
+    "Severe Damage": "The car has significant damage.",
+    "Moderate Damage": "The car has moderate damage.",
+    "Minor Damage": "The car has minor damage.",
     "No Damage": "The car has no visible damage."
 }
 
@@ -70,7 +70,8 @@ else:
 
         with image_row[i]:
             st.image(img, caption=caption, use_column_width=True)
-            st.write(f"<p style='font-size: 10px;'>{description}</p>", unsafe_allow_html=True)
+            st.write(f"<p style='font-size: 13px;'><strong>{caption}:</strong></p>", unsafe_allow_html=True)
+            st.write(f"<p style='font-size: 11px;'>{description}</p>", unsafe_allow_html=True)
 
 # Display the uploaded image
 if image is not None:
