@@ -69,6 +69,7 @@ else:
         img = img.resize(image_size) #Resizing
 
         with image_row[i]:
+            st.markdown(f"<p style='font-size: 12px;'><strong>{caption}:</strong></p>", unsafe_allow_html=True)
             st.image(img, caption=description, use_column_width=True)
             # st.write(f"<p style='font-size: 11px;'>{description}</p>", unsafe_allow_html=True)
 
