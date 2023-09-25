@@ -70,7 +70,7 @@ else:
 
         with image_row[i]:
             st.image(img, caption=caption, use_column_width=True)
-            st.write(f"**Description:** {description}")
+            st.write(f"<p style='font-size: 10px;'>{description}</p>", unsafe_allow_html=True)
 
 # Display the uploaded image
 if image is not None:
