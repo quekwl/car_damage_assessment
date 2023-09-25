@@ -48,11 +48,11 @@ captions = [
 ]
 
 descriptions = {
-    "Total Loss": "The car is completely crushed.",
-    "Severe Damage": "The car has significant damage.",
-    "Moderate Damage": "The car has moderate damage.",
-    "Minor Damage": "The car has minor damage.",
-    "No Damage": "The car has no visible damage."
+    "Total Loss":     "The car is completely crushed.",
+    "Severe Damage":  "The car has significant damage.",
+    "Moderate Damage":"The car has moderate damage.",
+    "Minor Damage":   "The car has minor damage.",
+    "No Damage":      "The car has no visible damage."
 }
 
 if len(captions) != len(image_paths):
