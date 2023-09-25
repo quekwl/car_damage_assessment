@@ -47,6 +47,14 @@ captions = [
     "No Damage"
 ]
 
+descriptions = {
+    "Total Loss": "The car is completely crushed.",
+    "Severe Damage": "Front & Side/ Back & Side damaged.",
+    "Moderate Damage": "Front or Back of car is damaged",
+    "Minor Damage": "Car has minor dents/scratches.",
+    "No Damage": "The car has no visible damage."
+}
+
 if len(captions) != len(image_paths):
     st.error("Number of captions must match the number of images.")
 else:
@@ -55,13 +63,14 @@ else:
     for i in range(len(image_paths)):
         image_path = image_paths[i]
         caption = captions[i]
+        description = descriptions.get(caption, "Description not available.")
 
         img = Image.open(image_path)
         img = img.resize(image_size) #Resizing
 
         with image_row[i]:
             st.image(img, caption=caption, use_column_width=True)
-
+            st.write(f"**Description:** {description}")
 
 # Display the uploaded image
 if image is not None:
