@@ -24,3 +24,6 @@ The package was dockerized and deployed to Google Cloud Run (no GPU). View demo 
 
 ## Findings
 Prediction accuracy using images in "predict_02" differed significantly, depending on whether the model was using GPU or not. For example, prediction using M2 Max with 30 core GPU in virtual environment with tensorflow-metal resulted in 80+% accuracy whilst prediction using separate virtual environment without tensorflow-metal resulted in only 60+% prediction accuracy on the same machine. Since Cloud Run does not have GPUs, we were unable to reproduce the 80+% prediction accuracy above. Deployment using a virtual machine with GPU in Compute Engine is being tested and results will be updated in this document.
+
+Update on 3 Oct 2023:
+A virtual machine was set up on Google Compute Engine with Nvidia L4 GPU. Instead of using Docker images, the car_damage package was uploaded to the virtual machine via Google Cloud Storage. The package could run and detect the Nvidia L4 GPU, but the prediction results were no different from prediction without GPU. As of this update, no solution has been found to replicate the results obtained on the M2 Max with 30 core GPU.
